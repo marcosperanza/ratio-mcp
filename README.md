@@ -1,5 +1,7 @@
 # ratio-mcp
 
+Project website: https://www.ratio-fin.com · [Online user manual](https://www.ratio-fin.com/it/manual)
+
 Local MCP server for Ratio. It is designed to decrypt and analyse Ratio data on
 hardware controlled by the user while the Ratio backend continues to store only
 ciphertext.
