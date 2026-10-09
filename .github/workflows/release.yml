@@ -1,0 +1,107 @@
+name: Cross-platform release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22.x"
+          cache: true
+      - run: go test ./...
+      - run: go vet ./...
+      - name: Require project license before publishing binaries
+        run: test -f LICENSE
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+            suffix: linux-amd64
+            runner: ubuntu-latest
+            cgo: "0"
+          - goos: linux
+            goarch: arm64
+            suffix: linux-arm64
+            runner: ubuntu-latest
+            cgo: "0"
+          - goos: linux
+            goarch: arm
+            goarm: "7"
+            suffix: linux-armv7
+            runner: ubuntu-latest
+            cgo: "0"
+          - goos: darwin
+            goarch: arm64
+            suffix: macos-arm64
+            runner: macos-15
+            cgo: "1"
+          - goos: darwin
+            goarch: amd64
+            suffix: macos-amd64
+            runner: macos-15-intel
+            cgo: "1"
+          - goos: windows
+            goarch: amd64
+            suffix: windows-amd64
+            ext: .exe
+            runner: windows-latest
+            cgo: "0"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22.x"
+          cache: true
+      - name: Build and package
+        shell: bash
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          GOARM: ${{ matrix.goarm }}
+          CGO_ENABLED: ${{ matrix.cgo }}
+        run: |
+          mkdir -p dist/package
+          go build -trimpath -ldflags="-s -w -X main.version=${GITHUB_REF_NAME} -X main.commit=${GITHUB_SHA} -X main.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)" -o dist/package/ratio-mcp${{ matrix.ext }} ./cmd/ratio-mcp
+          cp README.md LICENSE LICENSING.md THIRD_PARTY_NOTICES.md dist/package/
+          cp -R docs THIRD_PARTY_LICENSES dist/package/
+          tar -C dist/package -czf dist/ratio-mcp-${{ matrix.suffix }}.tar.gz .
+          cd dist
+          sha256sum ratio-mcp-${{ matrix.suffix }}.tar.gz > ratio-mcp-${{ matrix.suffix }}.tar.gz.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ratio-mcp-${{ matrix.suffix }}
+          path: dist/ratio-mcp-${{ matrix.suffix }}.tar.gz*
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Add corresponding source archive
+        run: |
+          git archive --format=tar.gz --prefix=ratio-mcp-${GITHUB_REF_NAME}/ ${GITHUB_REF_NAME} -o dist/ratio-mcp-${GITHUB_REF_NAME}-source.tar.gz
+          cd dist
+          sha256sum ratio-mcp-${GITHUB_REF_NAME}-source.tar.gz > ratio-mcp-${GITHUB_REF_NAME}-source.tar.gz.sha256
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true

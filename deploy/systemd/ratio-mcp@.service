@@ -1,0 +1,43 @@
+[Unit]
+Description=Ratio local encrypted analytics service (%i)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+# Set these to the same account that runs the MCP host.
+User=ratio-user
+Group=ratio-user
+EnvironmentFile=/etc/ratio-mcp/%i/config
+ExecStart=/opt/ratio-mcp/bin/ratio-mcp daemon --vault ${RATIO_MCP_VAULT} --tools-socket /run/ratio-mcp/%i/tools.sock --admin-socket /run/ratio-mcp/%i/admin.sock --pause-file /var/lib/ratio-mcp/%i/autounlock.paused --allowed-uid ${RATIO_MCP_ALLOWED_UID}
+LoadCredentialEncrypted=ratio-mcp-vault-passphrase:/etc/ratio-mcp/%i/vault-passphrase.cred
+RuntimeDirectory=ratio-mcp/%i
+RuntimeDirectoryMode=0700
+StateDirectory=ratio-mcp/%i
+StateDirectoryMode=0700
+Restart=on-failure
+RestartSec=3s
+TimeoutStopSec=10s
+UMask=0077
+LimitCORE=0
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+ProcSubset=pid
+RestrictNamespaces=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SystemCallArchitectures=native
+ReadWritePaths=/run/ratio-mcp/%i /var/lib/ratio-mcp/%i
+
+[Install]
+WantedBy=multi-user.target

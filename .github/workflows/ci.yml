@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22.x"
+          cache: true
+      - run: go test ./...
+      - run: go vet ./...
+      - run: CGO_ENABLED=0 go build ./...
+
+  verify-desktop:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-15
+            target: macOS arm64
+          - os: macos-15-intel
+            target: macOS amd64
+          - os: windows-latest
+            target: Windows amd64
+    runs-on: ${{ matrix.os }}
+    name: Verify ${{ matrix.target }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22.x"
+          cache: true
+      - run: go test ./...
+      - run: go vet ./...
+      - run: go build ./...

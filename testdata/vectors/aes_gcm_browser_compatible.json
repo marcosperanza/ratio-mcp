@@ -1,0 +1,8 @@
+{
+  "source": "Web Crypto API crypto.subtle.encrypt",
+  "algorithm": "AES-GCM",
+  "masterKey": "AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8=",
+  "iv": "8PHy8/T19vf4+fr7",
+  "ciphertext": "EiQnZQ9ZoB3vg5714GhYlFKTNrVLYj24IDNQ1DZB8Cs+cXvrNe3Fu6J1/0E5Csej6T9yBgQRfuMz9FT8GD6+hXKMdwmlJs0Yo2Ngvl2kvCZx",
+  "plaintext": "{\"description\":\"Browser vector\",\"amount\":-12.34,\"currency\":\"EUR\"}"
+}

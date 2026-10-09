@@ -1,0 +1,76 @@
+{
+  "workspaceId": "fixture-family",
+  "coverage": {
+    "coverageFrom": "2026-07-01",
+    "coverageTo": "2026-09-30",
+    "isComplete": true,
+    "lastSyncedAt": "2026-09-28T08:00:00Z",
+    "sourceRevision": "fixture-r1"
+  },
+  "transactions": [
+    {
+      "id": "fixture-tx-001",
+      "workspaceId": "fixture-family",
+      "bookingDate": "2026-09-01",
+      "encryptedBlob": "sr+IzE5CNF5Vls9LAqgDg1tww7+iVsDn23S0RJjaL+l86unOycpR1p7mbfE2m2POG40w7Yw0TBi8WAJA3yoAcGwvMxjOan3Awjg43l17slna8x1X/pBYn4g6hylp3oWuZ/X+R1ExfiHGusRAxUV5cYBtInrWzBrV2Ez3m5w42peDGfp4pw==",
+      "encryptionIv": "ERITFBUWFxgZGhsc",
+      "serverVersion": 1
+    },
+    {
+      "id": "fixture-tx-002",
+      "workspaceId": "fixture-family",
+      "bookingDate": "2026-09-03",
+      "encryptedBlob": "Z9QPz3nIb/yAj86H4J5nFeW5YTTrTnyQR3blrlun+/mOQBUw/ef/+Q4YwVAFq8oSMsft1SO+51bsaWKrZ68rCvYF4/Rqeq3ucb9NmVM4eENpbRF3BHgM/cEdwOchl7XBXEQk7WxV6kOl76ZBCAdPn1kJhw/aBocvklK9uSJYD4bAhFGx7cKTDDJowy8=",
+      "encryptionIv": "IiMkJSYnKCkqKywt",
+      "serverVersion": 2
+    },
+    {
+      "id": "fixture-tx-003",
+      "workspaceId": "fixture-family",
+      "bookingDate": "2026-09-08",
+      "encryptedBlob": "WGZe4A/OmuN02BkCqOBo+NLZ455Kq/w6UISrpuQDankFVpKLNFpNNmfhWDlxP/HajBtgwBJ9fcJBs9h7k+126MursmgiDXjEn2RjrEPnPki5L9zhWUbGAM6s0QxtIWpaIebFdOjMV17rRb+m9Ysqu0P4ru6skyVd7FKpJ6TS0Ir/LttPwFHl2WM8",
+      "encryptionIv": "MzQ1Njc4OTo7PD0+",
+      "serverVersion": 3
+    },
+    {
+      "id": "fixture-tx-004",
+      "workspaceId": "fixture-family",
+      "bookingDate": "2026-09-15",
+      "encryptedBlob": "sFWS9Qgf5Z5sv5xLtpCma+63FuBRh2LYBxs3ZNq15cUcElZ21zb0rg24yojFt33Sy30uHshi2mei3+lAAVE87DyxlI2vCEWOVWCaJyi2Bc5cT7sVpM0JMtPydOeEszVXPksBfroYo5hYwEqNx/W8RU9y0/bFvL3wrOdenuqccVpEc6MnVCVMzpuR1AX0ze2UWi15",
+      "encryptionIv": "REVGR0hJSktMTU5P",
+      "serverVersion": 4
+    },
+    {
+      "id": "fixture-tx-005",
+      "workspaceId": "fixture-family",
+      "bookingDate": "2026-09-20",
+      "encryptedBlob": "23WVWwZhDXaTPIOVQfec67WuP5k/2kzbbUOrrm9MQBKiSVi10Bd/gdYa2QmKgSfGUVxMCZ7ZxHnVy1+TEyDA/zPaUSOtiPb7H6XH+iBuXmBCJRfQ5IZqo6bAZBs5FQ9uHCoSQ87xkXWsEBqbJVw2pNJ0paE73nYCB3ML675NmnNaA9aOyeQ+8Tch0nOzquEMNVpiSw==",
+      "encryptionIv": "VVZXWFlaW1xdXl9g",
+      "serverVersion": 5
+    },
+    {
+      "id": "fixture-tx-006",
+      "workspaceId": "fixture-family",
+      "bookingDate": "2026-09-22",
+      "encryptedBlob": "OkiVm+GWPqsFhIB6c1SnLQ96JsQuTfQrPiXKgpvuxSdFhsQpJBKQjjyI+N24Wxdz/gaU1rA73Dh7uFeMxT84nbPq4OWKXOlOVDvgh12XIw7k+jfNKz95oweywgVVmG55A+mjBczVl18beovQOJNhEJWOR/dZilu6dOAH29U=",
+      "encryptionIv": "ZmdoaWprbG1ub3Bx",
+      "serverVersion": 6
+    },
+    {
+      "id": "fixture-tx-007",
+      "workspaceId": "fixture-family",
+      "bookingDate": "2026-08-12",
+      "encryptedBlob": "WUL3dY8ATZrLLFnordSImOCNFYRgqr6c5tzEE5P6eeoAirjxz04wVsYyTIXFs/l1OSS4drKSHlQTritZCsYI++bUWdOpxsyek5r/Zct/Lj69GXWChhCSJy0eBJI71bq0dfKQdnYxXsOJGe8jdgWIvYbY/2sW67GU4uyYnB2g/WUMFBuuanv35/OAFhjp6Qk=",
+      "encryptionIv": "d3h5ent8fX5/gIGC",
+      "serverVersion": 7
+    },
+    {
+      "id": "fixture-tx-008",
+      "workspaceId": "fixture-family",
+      "bookingDate": "2026-07-01",
+      "encryptedBlob": "+qGW+knL/Q4r0jOhIe8RvgVfAJIDzkEE6zkC4907fVTVBVQbbLKKFbPN7OKRWDJEoFJ6PsyaOrwuGM9trqea+hcgUnTlxaykv5vuTH6sh6OHw+UKtDOGf0S+s3X8oyc8Yq7dM2PsQK4ias345Y2pRHr2JzfuRrsOCCDFm6u+T/+ItA==",
+      "encryptionIv": "iImKi4yNjo+QkZKT",
+      "serverVersion": 8
+    }
+  ]
+}
